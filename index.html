@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX JSON Lab</title>
+</head>
+<body>
+    <h2>AJAX JSON Communication</h2>
+    <button id="sendBtn">Send Data</button>
+    <p id="responseMsg"></p>
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            fetch('lab5_process.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: 'Maria' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('responseMsg').innerText = data.message;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
